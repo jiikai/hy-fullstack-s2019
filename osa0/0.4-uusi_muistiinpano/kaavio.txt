@@ -1,0 +1,23 @@
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+palvelin-->selain: 302 Found ... Location: https://fullstack-exampleapp.herokuapp.com/notes
+note over selain:
+Palvelin vastasi POSTiin ohjate selaimen uudelleen osoitteeseen /notes
+end note
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: 200 OK; /notes (HTML)
+palvelin-->selain: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: 200 OK; main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: 200 OK; main.js
+
+note over selain:
+selain pyytää json-datan js-koodin käskystä
+end note
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: 200 OK; data.json
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
