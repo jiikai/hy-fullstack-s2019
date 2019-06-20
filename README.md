@@ -1,2 +1,3 @@
-# hy-fullstack-s2019
-Exercises for the Full Stack Web Development course by University of Helsinki
+## [HY Full Stack](https://fullstackopen.com), Summer 2019
+
+### Course exercise repository
