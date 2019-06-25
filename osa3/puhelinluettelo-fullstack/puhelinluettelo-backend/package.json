@@ -1,0 +1,26 @@
+{
+  "name": "puhelinluettelo-with-backend",
+  "version": "0.1.1",
+  "description": "puhelinluettelo full stack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../puhelinluettelo-frontend && npm run build --prod && cp -r build ../puhelinluettelo-backend",
+    "deploy": "git push heroku master",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    "logs:prod": "heroku logs --tail"
+  },
+  "author": "Joa Käis",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.0",
+    "morgan": "^1.9.1"
+  }
+}

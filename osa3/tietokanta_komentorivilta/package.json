@@ -1,0 +1,14 @@
+{
+  "name": "tietokanta_komentorivilta",
+  "version": "1.0.0",
+  "description": "mongodb cli",
+  "main": "mongo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joa Käis",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.6.1"
+  }
+}
