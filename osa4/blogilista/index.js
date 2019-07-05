@@ -6,4 +6,3 @@ const server = http.createServer(app);
 server.listen(config.PORT, () =>  {
   console.log(`[http] server running on port ${config.PORT}`);
 });
-server.close();
