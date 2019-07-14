@@ -7,7 +7,8 @@ blogsRouter.get('/', async (req, res, next) => {
   try {
     const blogs = await Blog.find({}).populate('user', {
       username: true,
-      name: true
+      name: true,
+      id: true
     });
     res.json(blogs.map(blog => blog.toJSON()));
   } catch (error) {
@@ -19,7 +20,8 @@ blogsRouter.get('/:id', async (req, res, next) => {
   try {
     const blog = await Blog.findById(req.params.id).populate('user', {
       username: true,
-      name: true
+      name: true,
+      id: true
     });
     if (blog)
       res.json(blog.toJSON());
@@ -77,31 +79,43 @@ blogsRouter.delete('/:id', async (req, res, next) => {
 
 blogsRouter.put('/:id', async (req, res, next) => {
   try {
-    const decodedToken = jwt.verify(req.token, process.env.SECRET);
-    if (!req.token || !decodedToken.id)
-      return res.status(401).json({error: 'token missing or invalid'});
-    const blog = await Blog.findById(req.params.id);
-    const user = await User.findById(decodedToken.id);
-    if (blog && user) {
-      if (user._id.toString() !== decodedToken.id.toString())
-        return res.status(403)
-          .json({error: 'token does not match blog user id'});
-      const body = req.body;
-      const updated = await Blog.findByIdAndUpdate(blog._id, {
-        author: body.author,
-        title: body.title,
-        url: body.url,
-        likes: body.likes,
-        user: user._id
-      }, {
-        new: true
-      });
-      if (updated)
-        res.json(updated.toJSON());
-      else
-      res.status(204).end();
+    const body = req.body;
+    const blog = await Blog.findById(req.params.id).populate('user', {
+      username: true,
+      name: true,
+      id: true
+     });
+    let updated;
+    if (!req.token) {
+      blog.likes = body.likes;
+      blog.save();
+      updated = blog;
+    } else if (req.token) {
+      const decodedToken = jwt.verify(req.token, process.env.SECRET);
+      if (!decodedToken.id)
+        return res.status(401).json({error: 'invalid token'});
+      const user = await User.findById(decodedToken.id);
+      if (user) {
+        if (user._id.toString() !== decodedToken.id.toString())
+          return res.status(403)
+            .json({error: 'token does not match blog user id'});
+        updated = await Blog.findByIdAndUpdate(blog._id, {
+          author: body.author,
+          title: body.title,
+          url: body.url,
+          likes: body.likes,
+          user: user._id
+        }, {
+          new: true
+        });
+        updated.user = blog.user;
+      }
     } else
-      res.status(204).end();
+        return res.status(401).json({error: 'missing token'});
+    if (updated) {
+     res.json(updated.toJSON());
+    } else
+    res.status(204).end();
   } catch (error) {
     next(error);
   }

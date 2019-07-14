@@ -1,0 +1,59 @@
+.blog {
+  border: 'solid';
+  border-width: 1;
+  margin-bottom: 5;
+  padding-left: 2;
+  padding-top: 10;
+}
+
+.error {
+  color: darkred;
+  background: lightcoral;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: darkgreen;
+  background: lightgreen;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.info {
+  color: blue;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: green;
+  font-style: italic;
+}
+
+li {
+  color: black;
+  padding-top: 3px;
+  font-size: 15px;
+}
+/*
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+*/
