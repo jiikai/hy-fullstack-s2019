@@ -9,9 +9,9 @@ export const Blog = ({blog, like, remove}) => {
       <p className="blog-details" style={{
         display: fullVisibility ? '' : 'none'
       }}>
-        {blog.url}
-        added by {blog.user.username}
-        {blog.likes} likes
+        {`${blog.url}
+        added by ${blog.user.username}
+        ${blog.likes} likes`}
       </p>
       <button type="button" onClick={like}>like</button>
       {remove ? (

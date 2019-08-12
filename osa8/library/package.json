@@ -1,0 +1,26 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "a GraphQL backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "lint": "eslint .",
+    "watch": "cross-env NODE_ENV=development nodemon index.js"
+  },
+  "author": "jiikai",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.8.1",
+    "dotenv": "^8.0.0",
+    "graphql": "^14.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.8",
+    "mongoose-unique-validator": "^2.0.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.19.1"
+  }
+}
